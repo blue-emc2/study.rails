@@ -1,0 +1,39 @@
+<%= render partial: 'header' %>
+
+<h1>bookmarks</h1>
+
+<div class="form-group">
+  <div class="input-group">
+    <input type="text" class="form-control">
+    <span class="input-group-btn">
+      <%= link_to "追加", {action: :new}, {class: "btn btn-default"} %>
+    </span>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.user_id %></td>
+        <td><%= bookmark.url %></td>
+        <td><%= bookmark.created %></td>
+        <td><%= bookmark.time %></td>
+        <td><%= bookmark.keep_day %></td>
+        <td><%= bookmark.notice_flag %></td>
+        <td><%= link_to 'Show', bookmark %></td>
+        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bookmark', new_bookmark_path %>
