@@ -14,7 +14,17 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    @bookmark = Bookmark.new(url_params)
+    valid = Url.new(url: params[:bookmark][:url])
+
+    respond_to do |format|
+      unless valid.valid?
+        format.html { redirect_to @bookmark, notice: 'Bookmark was successfully created.' }
+      else
+        format.html { render :new }
+      end
+    end
+
   end
 
   # GET /bookmarks/1/edit
@@ -71,4 +81,9 @@ class BookmarksController < ApplicationController
     def bookmark_params
       params.require(:bookmark).permit(:user_id, :url, :created, :time, :keep_day, :notice_flag)
     end
+
+    def url_params
+      params.require(:bookmark).permit(:url)
+    end
+
 end
