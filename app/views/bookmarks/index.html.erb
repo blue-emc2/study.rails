@@ -41,13 +41,13 @@
   </tbody>
 </table>
 
+<%= form_tag new_bookmark_path, method: :get do |f| %>
 <div class="form-group bookmarks-index-form">
   <div class="input-group">
-    <input type="text" class="form-control">
+    <%= text_field_tag "bookmark[url]", nil, class: 'form-control' %>
     <span class="input-group-btn">
-      <%= link_to t('.new', :default => t("helpers.links.new")),
-        new_bookmark_path,
-        :class => 'btn btn-success' %>
+      <%= submit_tag "次へ", class: "btn btn-success" %>
     </span>
   </div>
 </div>
+<% end %>

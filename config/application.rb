@@ -28,5 +28,13 @@ module Mybookmarks
     #config.i18n.default_locale = :ja
 
     config.app_generators.stylesheet_engine :less
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
+    # add custom validators path
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
   end
 end
